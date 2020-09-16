@@ -1,5 +1,14 @@
 {{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
 {{!-- Feel free to remove this! --}}
+
+<ContextProvider @key="shared-context" @value={{this.value}}>
+    {{! Consumer somewhere in here }}
+    <Message />
+    <Message />
+    {{get (consume-context "shared-context") "count"}}
+</ContextProvider>
+
+<button type="button" {{on 'click' this.increment}}>INC</button>
+<button type="button" {{on 'click' this.changeMsg}}>CHANGE MSG</button>
 
 {{outlet}}
